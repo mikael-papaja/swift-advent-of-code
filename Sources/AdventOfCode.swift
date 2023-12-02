@@ -4,6 +4,7 @@ import ArgumentParser
 let allChallenges: [any AdventDay] = [
     Day00(),
     Day01(),
+    Day02()
 ]
 
 @available(iOS 16.0, *)
