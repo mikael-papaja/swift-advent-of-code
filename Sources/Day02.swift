@@ -1,5 +1,5 @@
 //
-//  Day01.swift
+//  Day02.swift
 //
 //
 //  Created by Mikael Bergman on 2023-12-01.

@@ -1,5 +1,5 @@
 //
-//  Day01.swift
+//  Day03.swift
 //
 //
 //  Created by Mikael Bergman on 2023-12-01.
@@ -113,18 +113,18 @@ struct Day03: AdventDay {
             var currentPoints = [Point]()
 
             for (x, char) in entity.enumerated() {
-                switch ValueType.getValueType(char) {
+                let type = ValueType.getValueType(char)
+                switch type {
                 case .number:
                     currentNumber += String(char)
                     currentPoints.append(Point(x: x, y: y))
                     continue
-                case .symbol:
-                    symbols.append(ValueTypePoint(type: .symbol, point: Point(x: x, y: y)))
-                case .gear:
-                    symbols.append(ValueTypePoint(type: .gear, point: Point(x: x, y: y)))
+                case .gear, .symbol:
+                    symbols.append(ValueTypePoint(type: type, point: Point(x: x, y: y)))
                 case .nothing:
                     break
                 }
+
                 if currentNumber != "" && !currentPoints.isEmpty {
                     numbers.append(Number(value: Int(currentNumber)!, points: currentPoints))
                     currentNumber = ""
@@ -184,14 +184,16 @@ struct Day03: AdventDay {
                 }
             }
 
-            if gearNumbers.count == 2 {
-                products.append((gearNumbers[0].value, gearNumbers[1].value))
-                if let index = numbers.firstIndex(of: gearNumbers[0]) {
-                    numbers.remove(at: index)
-                }
-                if let index = numbers.firstIndex(of: gearNumbers[1]) {
-                    numbers.remove(at: index)
-                }
+            if gearNumbers.count != 2 {
+                continue
+            }
+
+            products.append((gearNumbers[0].value, gearNumbers[1].value))
+            if let index = numbers.firstIndex(of: gearNumbers[0]) {
+                numbers.remove(at: index)
+            }
+            if let index = numbers.firstIndex(of: gearNumbers[1]) {
+                numbers.remove(at: index)
             }
         }
 
