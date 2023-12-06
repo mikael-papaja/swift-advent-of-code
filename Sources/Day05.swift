@@ -116,7 +116,7 @@ struct Day05: AdventDay {
             return -1
         }
 
-        return getLocationValues(steps: getSteps(Array(entities.dropFirst())), seeds: seeds) // 31599214
+        return getLocationValues(steps: getSteps(Array(entities.dropFirst())), seeds: seeds)
     }
 
     func part2() -> Any {
@@ -127,7 +127,7 @@ struct Day05: AdventDay {
         let steps = getSteps(Array(entities.dropFirst()))
 
         var lowest = Int.max
-        for (seedIndex, seedRange) in filteredRanges.enumerated() {
+        for seedRange in filteredRanges {
             var currentIndex = 0
             while true {
                 guard let currentArray = batchGetArrayFromRange(seedRange, index: currentIndex) else {
