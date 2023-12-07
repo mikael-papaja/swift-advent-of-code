@@ -1,10 +1,3 @@
-//
-//  Day03.swift
-//
-//
-//  Created by Mikael Bergman on 2023-12-01.
-//
-
 import XCTest
 
 @testable import AdventOfCode

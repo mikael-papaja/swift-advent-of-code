@@ -1,10 +1,3 @@
-//
-//  Day05.swift
-//
-//
-//  Created by Mikael Bergman on 2023-12-01.
-//
-
 import Algorithms
 import Foundation
 
@@ -211,9 +204,8 @@ struct Day05: AdventDay {
 
     private func batchGetArrayFromRange(_ range: StepRange, index: Int) -> [Int]? {
         let batchSize = 500000
-        let totalIndexes = (range.to - range.from) / batchSize
-
         let currentRange = StepRange(from: range.from + (batchSize * index), to: range.from + (batchSize * (index + 1)))
+        
         if currentRange.from >= range.to {
             return nil
         }
