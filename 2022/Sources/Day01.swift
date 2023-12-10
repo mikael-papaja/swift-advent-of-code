@@ -1,4 +1,3 @@
-//
 import Algorithms
 import Foundation
 
@@ -18,6 +17,6 @@ struct Day01: AdventDay {
     }
 
     func part2() -> Any {
-        return entities.map { $0.reduce(0, +) }.sorted().reversed()[0...2].reduce(0, +)
+        return entities.map { $0.reduce(0, +) }.sorted().reversed()[0 ... 2].reduce(0, +)
     }
 }
