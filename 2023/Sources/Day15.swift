@@ -7,10 +7,10 @@ struct Day15: AdventDay {
 
     // Splits input data into its component parts and convert from string.
     var entities: [[Character]] {
-        data.components(separatedBy: ",")
-            .compactMap {
-                $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : Array($0.trimmingCharacters(in: .whitespacesAndNewlines))
-            }
+        data.components(separatedBy: ",").compactMap {
+            let characters = Array($0.trimmingCharacters(in: .whitespacesAndNewlines))
+            return characters.isEmpty ? nil : characters
+        }
     }
 
     enum Operation: Character {
@@ -24,7 +24,7 @@ struct Day15: AdventDay {
         let operation: Operation!
         let focalLength: Int?
 
-        static func initFromCharacters(_ input: [Character], getHashValue: (([Character]) -> Int)) -> Instruction? {
+        static func initFromCharacters(_ input: [Character], getHashValue: ([Character]) -> Int) -> Instruction? {
             var label = ""
             var operation: Operation?
             var focalLength = ""
@@ -74,12 +74,12 @@ struct Day15: AdventDay {
 
     func getFocusingPower() -> Int {
         let instructions = entities.compactMap { Instruction.initFromCharacters($0, getHashValue: getHashValue(_:)) }
-        
+
         var boxes = [Box]()
-        for i in 0 ..< 256 {
+        for _ in 0 ..< 256 {
             boxes.append(Box())
         }
-        
+
         for instruction in instructions {
             switch instruction.operation {
             case .addOrReplace:
