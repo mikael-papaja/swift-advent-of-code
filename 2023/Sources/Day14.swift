@@ -54,9 +54,9 @@ struct Day14: AdventDay {
                 previousValue = currentValue
                 continue
             }
-            
+
             if previousValues[prev] == nil {
-                var counter = CycleCounter()
+                let counter = CycleCounter()
                 counter.cycles = [index]
                 counter.nextValue = currentValue
                 previousValues[prev] = counter
@@ -72,7 +72,7 @@ struct Day14: AdventDay {
                     differences.append(valueCycles[i] - previousCycleValue)
                     previousCycleValue = valueCycles[i]
                 }
-                
+
                 if differences.allSatisfy({ $0 == differences[0] }) {
                     if (cycles - index) % differences[0] == 0 {
                         return east
@@ -81,7 +81,7 @@ struct Day14: AdventDay {
                     }
                 }
             }
-            
+
             previousValue = currentValue
             data = east
         }
